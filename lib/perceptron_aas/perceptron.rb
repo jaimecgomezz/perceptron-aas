@@ -3,74 +3,80 @@ module PerceptronAas
     include Math
     include Logger
 
-    attr_reader :inputs, :weights, :alpha
+    attr_reader :dimension, :weights, :alpha
 
-    def initialize(n_inputs, alpha: 0.001, weights: [])
-      @n_inputs = n_inputs
-      @alpha = alpha
-      @weights = prepare_weights(weights, n_inputs)
+    def initialize(config)
+      @dimension = config.fetch(:dimension)
+      @alpha = config.fetch(:alpha, 0.1)
+      @weights = prepare_weights(config.fetch(:weights, []), dimension)
     end
 
-    def fit(trainings, targets, epochs: 10_000)
-      weighted_trainings = trainings.map do |training|
-        training + [1]
+    def config
+      { dimension: dimension, alpha: alpha, weights: weights }
+    end
+
+    def train(inputs, targets, iterations: 100)
+      iterations.times do
+        step(inputs, targets)
       end
 
-      adjustments = 0
-      epochs.times do
-        weighted_trainings.zip(targets).each do |training, target|
-          p = step(dot(training))
-
-          if p != target
-            error = p - target
-
-            @weights = training.zip(weights).map do |t, w|
-              w + (-alpha * error * t)
-            end
-
-            adjustments += 1
-
-            debug("Weights adjusted: #{weights}")
-          end
-        end
-      end
-
-      info("Final weights: #{weights}. #{adjustments} were made.")
+      info("Final weights: #{weights}")
 
       self
     end
 
-    def predict(inputs)
-      step(dot(inputs))
+    def step(inputs, targets)
+      weighted_inputs = inputs.map do |input|
+        input + [1]
+      end
+
+      weighted_inputs.zip(targets).each do |input, target|
+        prediction = _predict(input)
+
+        if prediction != target
+          error = prediction - target
+
+          @weights = input.zip(weights).map do |i, w|
+            w + (-alpha * error * i)
+          end
+
+          debug("Weights adjusted: #{weights}")
+        end
+      end
+
+      self
+    end
+
+    def predict(input)
+      input << 1
+
+      _predict(input)
     end
 
     private
 
-    def step(x)
-      x > 0 ? 1 : 0
-    end
-
-    def dot(training)
+    def _predict(input)
       result = 0
 
-      training.zip(weights).each do |t, w|
-        result += t * w
+      input.zip(weights).each do |i, w|
+        result += i * w
       end
 
-      result
+      result > 0 ? 1 : 0
     end
 
-    def prepare_weights(weights, n_inputs)
-      return weights if weights.size == n_inputs
+    def prepare_weights(ws, dimension)
+      if ws.size != (dimension + 1)
+        ws = []
 
-      weights = []
-      (n_inputs + 1).times do
-        weights << rand / sqrt(n_inputs)
+        (dimension + 1).times do
+          ws << rand / sqrt(dimension)
+        end
       end
 
-      info("Initial weights: #{weights}")
+      info("Initial weights: #{ws}")
 
-      weights
+      ws
     end
   end
 end

@@ -6,6 +6,9 @@ SimpleCov.start do
 end
 
 require 'perceptron_aas'
+require 'json-schema'
+require 'rack/test'
+require_relative '../deploy/api'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -25,4 +28,13 @@ RSpec.configure do |config|
 
   config.order = :random
   Kernel.srand config.seed
+  config.include Rack::Test::Methods
+end
+
+RSpec::Matchers.define :match_schema do |schema|
+  match do |response|
+    schema_directory = "#{Dir.pwd}/spec/schemas"
+    schema_path = "#{schema_directory}/#{schema}.json"
+    JSON::Validator.validate!(schema_path, response)
+  end
 end

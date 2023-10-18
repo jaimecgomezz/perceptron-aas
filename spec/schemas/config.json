@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "integer"
+        },
+        "alpha": {
+          "type": "number"
+        },
+        "weights": {
+          "type": "array",
+          "items": {
+            "oneOf": [{ "type": "number" }]
+          }
+        }
+      },
+      "required": [
+        "dimension",
+        "alpha",
+        "weights"
+      ]
+    }
+  },
+  "required": [
+    "result"
+  ]
+}

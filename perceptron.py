@@ -12,7 +12,8 @@ class Perceptron:
         # apply the step function
         return 1 if x > 0 else 0
 
-    def fit(self, X, y, epochs=10):
+    def fit(self, X, y, epochs=100):
+        print(f"Initial weights: {self.W}")
         # insert a column of 1's as the last entry in the feature
         # matrix -- this little trick allows us to treat the bias
         # as a trainable parameter within the weight matrix
@@ -35,15 +36,19 @@ class Perceptron:
                     # update the weight matrix
                     self.W += -self.alpha * error * x
 
+                    print(f"Adjusted weights: {self.W}")
+
     def predict(self, X, addBias=True):
-        breakpoint()
         # ensure our input is a matrix
         X = np.atleast_2d(X)
         # check to see if the bias column should be added
         if addBias:
             # insert a column of 1's as the last entry in the feature
             # matrix (bias)
+            old = X
             X = np.c_[X, np.ones((X.shape[0]))]
+
+        breakpoint()
         # take the dot product between the input features and the
         # weight matrix, then pass the value through the step
         # function
@@ -52,7 +57,7 @@ class Perceptron:
 
 # construct the OR dataset
 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-y = np.array([[0], [1], [1], [1]])
+y = np.array([[0], [0], [0], [1]])
 # define our perceptron and train it
 print("[INFO] training perceptron...")
 p = Perceptron(X.shape[1], alpha=0.1)
