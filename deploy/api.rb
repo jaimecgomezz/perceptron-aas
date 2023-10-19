@@ -12,7 +12,7 @@ class API < Sinatra::Base
   error do |err|
     status 500
 
-    { error: err.message, backtrace: err.backtrace }.to_json
+    { message: err.message, backtrace: err.backtrace }.to_json
   end
 
   get('/healthcheck') { 204 }
@@ -40,7 +40,7 @@ class API < Sinatra::Base
   post('/predict') do
     prediction = PerceptronAas.predict(
       params.fetch('config'),
-      params.fetch('input'),
+      params.fetch('input')
     )
 
     { result: prediction }.to_json
