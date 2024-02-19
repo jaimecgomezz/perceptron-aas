@@ -33,15 +33,15 @@ module PerceptronAas
       weighted_inputs.zip(targets).each do |input, target|
         prediction = _predict(input)
 
-        if prediction != target
-          error = prediction - target
+        next if prediction == target
 
-          @weights = input.zip(weights).map do |i, w|
-            w + (-alpha * error * i)
-          end
+        error = prediction - target
 
-          debug("Weights adjusted: #{weights}")
+        @weights = input.zip(weights).map do |i, w|
+          w + (-alpha * error * i)
         end
+
+        debug("Weights adjusted: #{weights}")
       end
 
       self

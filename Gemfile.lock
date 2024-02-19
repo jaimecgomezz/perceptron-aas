@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     perceptron-aas (1.0.0)
+      puma (~> 6.4)
+      sinatra (~> 3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -20,6 +22,7 @@ GEM
     method_source (1.0.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.7.0)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -28,6 +31,8 @@ GEM
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (5.0.3)
+    puma (6.4.2)
+      nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
     rack-contrib (2.3.0)
@@ -95,6 +100,7 @@ GEM
     unicode-display_width (2.4.2)
 
 PLATFORMS
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
@@ -109,7 +115,6 @@ DEPENDENCIES
   rubocop-performance (~> 1.13)
   rubocop-rspec (~> 2.8)
   simplecov (~> 0.21.2)
-  sinatra (~> 3.1)
 
 BUNDLED WITH
    2.2.32
