@@ -19,7 +19,6 @@ Train your Perceptron As a Service
 
    ```sh
    $ ruby --version
-   # Expected output:
    ruby 3.0.3p157 (2021-11-24 revision 3fb7d2cadc)
    ```
 
@@ -33,7 +32,6 @@ Train your Perceptron As a Service
 
    ```sh
    $ bundle exec puma deploy/config.ru
-   # Expected output:
    Puma starting in single mode...
    * Puma version: 6.4.2 (ruby 3.0.3-p157) ("The Eagle of Durango")
    *  Min threads: 0
@@ -59,12 +57,11 @@ For this example, we'll use a standard `perceptron` training example, the `AND` 
 
 
 
-### Train
+### Train [POST /train]
 
 This endpoint allows the user to train a perceptron. Following the `AND` gate example, the request should look as follows:
 
 `````` json
-# POST /train
 {
 	"inputs": [
 		[0, 0],
@@ -99,10 +96,9 @@ The expected response from the API should look like this:
 
 The previous response represents the resulting `weights` of the perceptron `inputs`, as described in the perceptron model. Said response isn't helpful all by itself, we'll need to it into the `predict` endpoint in order to validate the perceptron training.
 
-### Predict
+### Predict [POST /predict]
 
 ``````json
-# POST /predict
 {
   "input": [1, 1],
   "config": {
@@ -147,3 +143,12 @@ As expected, the API response is the following:
 { "result": 0 }
 ```
 
+## Documentation
+
+### API reference
+
+This project is documented using the [OpenAPI specification](https://swagger.io/specification/) which is widely considered as the standard for API specification. Said documentation is available as a plain [OpenAPI JSON document](reference/perceptron-aas.json), an [HTML web page](reference/perceptron-aas.html) or a simple [PDF file](reference/perceptron-aas.pdf).
+
+### Requests
+
+The examples above (`train`, `predict`) can be reproduced either via [Insomnia](https://insomnia.rest/) [requests](requests/insomnia.json) or [cURL](https://curl.se/) [requests](requests/curl.sh).
