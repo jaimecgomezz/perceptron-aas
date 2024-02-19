@@ -122,7 +122,6 @@ Now, the expected response from the API looks like this:
 What we just did is requesting to evaluate our `input` with the provided `config`, which is nothing but the result of the train request made earlier. The `X1: 1, X2: 1` input results in a `1`output, as stated in the table defined above. We'll now make another request with the `input` being: `X1: 0, X2: 1`, which should result in a `0` output.
 
  ```json
- # POST /predict
  {
    "input": [0, 1],
    "config": {
