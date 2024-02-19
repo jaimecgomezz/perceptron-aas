@@ -73,18 +73,18 @@ This endpoint allows the user to train a perceptron. Following the `AND` gate ex
 
 `````` json
 {
-	"inputs": [
-		[0, 0],
-		[0, 1],
-		[1, 0],
-		[1, 1]
-	],
-	"targets": [
-		0,
-		0,
-		0,
-		1
-	],
+  "inputs":[
+    [0,0],
+    [0,1],
+    [1,0],
+    [1,1]
+  ],
+  "targets":[
+    0,
+    0,
+    0,
+    1
+  ]
 }
 ``````
 
@@ -104,7 +104,7 @@ The expected response from the API should look like this:
 }
 ``````
 
-The previous response represents the resulting `weights` of the perceptron `inputs`, as described in the perceptron model. Said response isn't helpful all by itself, we'll need to it into the `predict` endpoint in order to validate the perceptron training.
+The previous response represents the resulting `weights` of the perceptron `inputs`, as described in the perceptron model. Said response isn't helpful all by itself, we'll need to feed it into the `predict` endpoint in order to validate the perceptron training.
 
 ### Predict [POST /predict]
 
@@ -129,7 +129,7 @@ Now, the expected response from the API looks like this:
 { "result": 1 }
 ```
 
-What we just did is requesting to evaluate our `input` with the provided `config`, which is nothing but the result of the train request made earlier. The `X1: 1, X2: 1` input results in a `1`output, as stated in the table defined above. We'll now make another request with the `input` being: `X1: 0, X2: 1`, which should result in a `0` output.
+What we just did is requesting to evaluate our `input` with the provided `config`, which is nothing but the result of the train request made earlier. The `X1: 1, X2: 1` input results in a `1`output, as stated in the table defined at the top. We'll now make another request with the `input` being: `X1: 0, X2: 1`, which should result in a `0` output.
 
  ```json
  {
@@ -151,6 +151,11 @@ As expected, the API response is the following:
 ```json
 { "result": 0 }
 ```
+
+Since the previous response turned out correct, we should be able to validate the remaining `X1` and `x2` configurations, expecting the correct output, which will be left as an exercise for the user:
+
+- `X1: 1`, `X2: 0` should return `0`
+- `X1: 0`, `X2: 0` should return `0`
 
 ## Documentation
 
