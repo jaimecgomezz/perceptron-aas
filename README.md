@@ -4,31 +4,41 @@ Train your Perceptron As a Service
 
 ## Requirements
 
-1. [rbenv](https://github.com/rbenv/rbenv): A version manager for the Ruby language
-2. [ruby-build](https://github.com/rbenv/ruby-build): A command-line tool that simplifies installation of any Ruby language version
+This guide will focus entirely on the `perceptron-aas` project dependencies installation and usage, is the up to the user to install the following requirements: 
+
+1. [git](https://git-scm.com/downloads): A  free and open source distributed version control system
+2. [rbenv](https://github.com/rbenv/rbenv?tab=readme-ov-file#installation): A version manager for the Ruby language
+3. [ruby-build](https://github.com/rbenv/ruby-build?tab=readme-ov-file#installation): A command-line tool that simplifies installation of any Ruby language version
 
 ## Installation
 
-1. Once `rbenv`and `ruby-build`have been installed, we must install the `3.0.3` version of Ruby:
+1. Download this repository
+
+   ```sh
+   $ git clone https://github.com/jaimecgomezz/perceptron-aas.git
+   cd perceptron-aas
+   ```
+
+2. Install the `3.0.3` version of Ruby with `rbenv` and `ruby-build`:
 
    ```sh
    $ rbenv install 3.0.3
    ```
 
-2. Verify that the correct version of Ruby is installed:
+3. Verify that the correct version of Ruby is installed:
 
    ```sh
    $ ruby --version
    ruby 3.0.3p157 (2021-11-24 revision 3fb7d2cadc)
    ```
 
-3. Install the project dependencies with [bundler](https://bundler.io/):
+4. Install the project dependencies with [bundler](https://bundler.io/):
 
    ```sh
    $ bundle install
    ```
 
-4. Start the local API with [puma](https://github.com/puma/puma):
+5. Start the local API with [puma](https://github.com/puma/puma):
 
    ```sh
    $ bundle exec puma deploy/config.ru
@@ -146,8 +156,8 @@ As expected, the API response is the following:
 
 ### API reference
 
-This project is documented using the [OpenAPI specification](https://swagger.io/specification/) which is widely considered as the standard for API specification. Said documentation is available as a plain [OpenAPI JSON document](reference/perceptron-aas.json), an [HTML web page](reference/perceptron-aas.html) or a simple [PDF file](reference/perceptron-aas.pdf).
+This project is documented using the [OpenAPI specification](https://swagger.io/specification/) which is widely considered as the standard for API specification. Said documentation is available within the project, inside the `reference` directory as a standard [OpenAPI JSON document](reference/perceptron-aas.json), an [HTML web page](reference/perceptron-aas.html) or a simple [PDF file](reference/perceptron-aas.pdf).
 
 ### Requests
 
-The examples above (`train`, `predict`) can be reproduced either via [Insomnia](https://insomnia.rest/) [requests](requests/insomnia.json) or [cURL](https://curl.se/) [requests](requests/curl.sh).
+The examples above (`train`, `predict`) are also contained within the project, inside the `requests` directory, as a [Insomnia](https://insomnia.rest/) [requests collection](requests/insomnia.json) or as a [cURL](https://curl.se/) [script](requests/curl.sh).
