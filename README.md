@@ -133,16 +133,16 @@ What we just did is requesting to evaluate our `input` with the provided `config
 
 ```json
 {
-"input": [0, 1],
-"config": {
-    "dimension": 2,
-    "alpha": 0.1,
-    "weights": [
-        0.17049156980191243,
-        0.14442368350208507,
-        -0.29589168632546364
-    ]
-}
+    "input": [0, 1],
+    "config": {
+        "dimension": 2,
+        "alpha": 0.1,
+        "weights": [
+            0.17049156980191243,
+            0.14442368350208507,
+            -0.29589168632546364
+        ]
+    }
 }
  ```
 
