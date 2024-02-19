@@ -92,15 +92,15 @@ The expected response from the API should look like this:
 
 ``````json
 {
-	"result": {
-		"dimension": 2,
-		"alpha": 0.1,
-		"weights": [
-			0.17049156980191243,
-			0.14442368350208507,
-			-0.29589168632546364
-		]
-	}
+    "result": {
+        "dimension": 2,
+        "alpha": 0.1,
+        "weights": [
+            0.17049156980191243,
+            0.14442368350208507,
+            -0.29589168632546364
+        ]
+    }
 }
 ``````
 
@@ -112,14 +112,14 @@ The previous response represents the resulting `weights` of the perceptron `inpu
 {
   "input": [1, 1],
   "config": {
-		"dimension": 2,
-		"alpha": 0.1,
-		"weights": [
-			0.17049156980191243,
-			0.14442368350208507,
-			-0.29589168632546364
-		]
-	}
+        "dimension": 2,
+        "alpha": 0.1,
+        "weights": [
+            0.17049156980191243,
+            0.14442368350208507,
+            -0.29589168632546364
+        ]
+    }
 }
 ``````
 
@@ -131,19 +131,19 @@ Now, the expected response from the API looks like this:
 
 What we just did is requesting to evaluate our `input` with the provided `config`, which is nothing but the result of the train request made earlier. The `X1: 1, X2: 1` input results in a `1`output, as stated in the table defined at the top. We'll now make another request with the `input` being: `X1: 0, X2: 1`, which should result in a `0` output.
 
- ```json
- {
-   "input": [0, 1],
-   "config": {
- 		"dimension": 2,
- 		"alpha": 0.1,
- 		"weights": [
- 			0.17049156980191243,
- 			0.14442368350208507,
- 			-0.29589168632546364
- 		]
- 	}
- }
+```json
+{
+"input": [0, 1],
+"config": {
+    "dimension": 2,
+    "alpha": 0.1,
+    "weights": [
+        0.17049156980191243,
+        0.14442368350208507,
+        -0.29589168632546364
+    ]
+}
+}
  ```
 
 As expected, the API response is the following:
